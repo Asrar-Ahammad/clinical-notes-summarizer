@@ -21,10 +21,10 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. WHEN a clinical note is provided, THE Summarization_Engine SHALL parse and extract relevant clinical information
-2. WHEN processing clinical text, THE Summarization_Engine SHALL preserve all medically relevant details without omission
-3. WHEN invalid or corrupted input is received, THE Summarization_Engine SHALL return a descriptive error message
-4. WHEN processing is complete, THE Summarization_Engine SHALL maintain traceability to Source_Information
+1.1. WHEN a clinical note is provided, THE Summarization_Engine SHALL parse and extract relevant clinical information
+1.2. WHEN processing clinical text, THE Summarization_Engine SHALL preserve all medically relevant details without omission
+1.3. WHEN invalid or corrupted input is received, THE Summarization_Engine SHALL return a descriptive error message
+1.4. WHEN processing is complete, THE Summarization_Engine SHALL maintain traceability to Source_Information
 
 ### Requirement 2: Structured Summary Generation
 
@@ -32,15 +32,15 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. THE Summarization_Engine SHALL generate summaries containing chief complaint sections
-2. THE Summarization_Engine SHALL generate summaries containing history of present illness sections
-3. THE Summarization_Engine SHALL generate summaries containing past medical history sections
-4. THE Summarization_Engine SHALL generate summaries containing medication sections
-5. THE Summarization_Engine SHALL generate summaries containing allergy sections
-6. WHEN vital signs are present in the source, THE Summarization_Engine SHALL include vitals sections
-7. THE Summarization_Engine SHALL generate red flag sections highlighting critical information
-8. THE Summarization_Engine SHALL generate pending labs/tests sections when applicable
-9. THE Summarization_Engine SHALL generate concise handoff summary sections
+2.1. THE Summarization_Engine SHALL generate summaries containing chief complaint sections
+2.2. THE Summarization_Engine SHALL generate summaries containing history of present illness sections
+2.3. THE Summarization_Engine SHALL generate summaries containing past medical history sections
+2.4. THE Summarization_Engine SHALL generate summaries containing medication sections
+2.5. THE Summarization_Engine SHALL generate summaries containing allergy sections
+2.6. WHEN vital signs are present in the source, THE Summarization_Engine SHALL include vitals sections
+2.7. THE Summarization_Engine SHALL generate red flag sections highlighting critical information
+2.8. THE Summarization_Engine SHALL generate pending labs/tests sections when applicable
+2.9. THE Summarization_Engine SHALL generate concise handoff summary sections
 
 ### Requirement 3: Clinical Safety Constraints
 
@@ -48,11 +48,11 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. THE Summarization_Engine SHALL NOT generate diagnostic recommendations
-2. THE Summarization_Engine SHALL NOT generate treatment prescriptions
-3. THE Summarization_Engine SHALL NOT generate medication dosage recommendations
-4. WHEN medical advice language is detected in output, THE Summarization_Engine SHALL flag and remove such content
-5. THE Summarization_Engine SHALL limit output to summarization and structuring of existing information
+3.1. THE Summarization_Engine SHALL NOT generate diagnostic recommendations
+3.2. THE Summarization_Engine SHALL NOT generate treatment prescriptions
+3.3. THE Summarization_Engine SHALL NOT generate medication dosage recommendations
+3.4. WHEN medical advice language is detected in output, THE Summarization_Engine SHALL flag and remove such content
+3.5. THE Summarization_Engine SHALL limit output to summarization and structuring of existing information
 
 ### Requirement 4: Information Accuracy and Completeness
 
@@ -60,10 +60,10 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. WHEN summarizing clinical information, THE Summarization_Engine SHALL preserve factual accuracy of Source_Information
-2. WHEN critical information is present, THE Summarization_Engine SHALL ensure inclusion in appropriate summary sections
-3. WHEN information is ambiguous, THE Summarization_Engine SHALL preserve the original ambiguity rather than making assumptions
-4. THE Summarization_Engine SHALL maintain consistency between summary sections and Source_Information
+4.1. WHEN summarizing clinical information, THE Summarization_Engine SHALL preserve factual accuracy of Source_Information
+4.2. WHEN critical information is present, THE Summarization_Engine SHALL ensure inclusion in appropriate summary sections
+4.3. WHEN information is ambiguous, THE Summarization_Engine SHALL preserve the original ambiguity rather than making assumptions
+4.4. THE Summarization_Engine SHALL maintain consistency between summary sections and Source_Information
 
 ### Requirement 5: Red Flag Identification
 
@@ -71,11 +71,11 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. WHEN abnormal vital signs are present, THE Summarization_Engine SHALL flag them as red flags
-2. WHEN allergy information indicates severe reactions, THE Summarization_Engine SHALL flag them as red flags
-3. WHEN medication interactions are documented, THE Summarization_Engine SHALL flag them as red flags
-4. WHEN urgent language appears in clinical notes, THE Summarization_Engine SHALL flag relevant sections as red flags
-5. THE Summarization_Engine SHALL provide clear rationale for each red flag designation
+5.1. WHEN abnormal vital signs are present, THE Summarization_Engine SHALL flag them as red flags
+5.2. WHEN allergy information indicates severe reactions, THE Summarization_Engine SHALL flag them as red flags
+5.3. WHEN medication interactions are documented, THE Summarization_Engine SHALL flag them as red flags
+5.4. WHEN urgent language appears in clinical notes, THE Summarization_Engine SHALL flag relevant sections as red flags
+5.5. THE Summarization_Engine SHALL provide clear rationale for each red flag designation
 
 ### Requirement 6: Clinical Workflow Integration
 
@@ -83,10 +83,10 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. WHEN generating handoff summaries, THE Summarization_Engine SHALL prioritize actionable and time-sensitive information
-2. WHEN multiple clinical notes are processed, THE Summarization_Engine SHALL synthesize information chronologically
-3. THE Summarization_Engine SHALL format output for easy verbal communication during rounds
-4. THE Summarization_Engine SHALL highlight pending actions and follow-up requirements
+6.1. WHEN generating handoff summaries, THE Summarization_Engine SHALL prioritize actionable and time-sensitive information
+6.2. WHEN multiple clinical notes are processed, THE Summarization_Engine SHALL synthesize information chronologically
+6.3. THE Summarization_Engine SHALL format output for easy verbal communication during rounds
+6.4. THE Summarization_Engine SHALL highlight pending actions and follow-up requirements
 
 ### Requirement 7: Data Processing and Validation
 
@@ -94,10 +94,10 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. WHEN clinical notes contain medical abbreviations, THE Summarization_Engine SHALL interpret them correctly
-2. WHEN clinical notes contain timestamps, THE Summarization_Engine SHALL preserve temporal relationships
-3. WHEN clinical notes contain structured data mixed with free text, THE Summarization_Engine SHALL process both formats
-4. WHEN clinical notes are incomplete, THE Summarization_Engine SHALL identify and flag missing information sections
+7.1. WHEN clinical notes contain medical abbreviations, THE Summarization_Engine SHALL interpret them correctly
+7.2. WHEN clinical notes contain timestamps, THE Summarization_Engine SHALL preserve temporal relationships
+7.3. WHEN clinical notes contain structured data mixed with free text, THE Summarization_Engine SHALL process both formats
+7.4. WHEN clinical notes are incomplete, THE Summarization_Engine SHALL identify and flag missing information sections
 
 ### Requirement 8: Output Formatting and Presentation
 
@@ -105,7 +105,7 @@ The Clinical Summarization Assistant transforms unstructured clinical notes into
 
 #### Acceptance Criteria
 
-1. THE Summarization_Engine SHALL format output with clear section headers and consistent structure
-2. THE Summarization_Engine SHALL use bullet points and concise language for readability
-3. THE Summarization_Engine SHALL maintain professional medical terminology appropriate for clinical audiences
-4. THE Summarization_Engine SHALL ensure summary length is appropriate for quick review while maintaining completeness
+8.1. THE Summarization_Engine SHALL format output with clear section headers and consistent structure
+8.2. THE Summarization_Engine SHALL use bullet points and concise language for readability
+8.3. THE Summarization_Engine SHALL maintain professional medical terminology appropriate for clinical audiences
+8.4. THE Summarization_Engine SHALL ensure summary length is appropriate for quick review while maintaining completeness

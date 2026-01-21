@@ -6,6 +6,28 @@ The Clinical Summarization Assistant is an AI-powered system that transforms uns
 
 Based on recent research, large language models have demonstrated the ability to outperform medical experts in clinical text summarization tasks across multiple domains including radiology reports, progress notes, and patient dialogue. The system will utilize adapted language models specifically fine-tuned for clinical text processing while implementing robust safety mechanisms to ensure appropriate use.
 
+## Design Decisions and Rationales
+
+### Source Traceability Enhancement
+**Decision**: Added comprehensive source traceability throughout the processing pipeline.
+**Rationale**: Requirement 1.4 mandates maintaining traceability to source information. This enhancement ensures that every piece of processed information can be traced back to its original location in the clinical note, supporting audit trails and debugging.
+
+### Pending Labs and Tests Separation
+**Decision**: Separated pending tests and pending labs into distinct section types.
+**Rationale**: Requirement 2.8 specifically mentions "pending labs/tests sections when applicable." Clinical workflows often distinguish between laboratory tests and other diagnostic procedures, so separate handling improves clinical relevance.
+
+### Chronological Synthesis Integration
+**Decision**: Added explicit chronological synthesis capabilities to the summarization engine.
+**Rationale**: Requirement 6.2 requires synthesizing information chronologically when processing multiple clinical notes. This design ensures temporal relationships are preserved and properly integrated into summaries.
+
+### Enhanced Handoff Summary Structure
+**Decision**: Expanded handoff summaries to include explicit pending actions and follow-up requirements.
+**Rationale**: Requirement 6.4 mandates highlighting pending actions and follow-up requirements. The enhanced structure ensures these critical elements are systematically captured and presented.
+
+### Confidence Scoring Integration
+**Decision**: Added confidence scores throughout the processing pipeline.
+**Rationale**: While not explicitly required, confidence scoring supports requirement 4.3 (preserving ambiguity) by quantifying uncertainty and helps clinicians understand the reliability of extracted information.
+
 ## Architecture
 
 The system follows a modular pipeline architecture with clear separation of concerns:
@@ -56,6 +78,13 @@ interface ProcessedText {
   cleanedText: string;
   preservedFormatting: FormatElement[];
   detectedSections: SectionHint[];
+  sourceTraceability: SourceTrace[];
+}
+
+interface SourceTrace {
+  originalSpan: TextSpan;
+  processedSpan: TextSpan;
+  transformationType: TransformationType;
 }
 ```
 
@@ -108,7 +137,8 @@ enum SectionType {
   MEDICATIONS = "medications",
   ALLERGIES = "allergies",
   VITALS = "vitals",
-  PENDING_TESTS = "pending_tests"
+  PENDING_TESTS = "pending_tests",
+  PENDING_LABS = "pending_labs"
 }
 ```
 
@@ -118,6 +148,19 @@ interface SummarizationEngine {
   summarizeSection(section: SectionMapping): SummarizedSection;
   generateHandoffSummary(sections: SummarizedSection[]): HandoffSummary;
   preserveFactualAccuracy(original: string, summary: string): AccuracyCheck;
+  synthesizeChronologically(notes: ClinicalNote[]): ChronologicalSynthesis;
+}
+
+interface ChronologicalSynthesis {
+  timelineEvents: TemporalEvent[];
+  synthesizedSections: SummarizedSection[];
+  temporalRelationships: TemporalRelationship[];
+}
+
+interface TemporalRelationship {
+  eventA: TemporalEvent;
+  eventB: TemporalEvent;
+  relationshipType: RelationshipType;
 }
 
 interface SummarizedSection {
@@ -125,6 +168,8 @@ interface SummarizedSection {
   summary: string;
   keyPoints: string[];
   preservedDetails: CriticalDetail[];
+  sourceTraceability: SourceTrace[];
+  confidenceScore: number;
 }
 
 interface HandoffSummary {
@@ -132,6 +177,22 @@ interface HandoffSummary {
   actionItems: string[];
   timelineSummary: string;
   priorityLevel: PriorityLevel;
+  pendingActions: PendingAction[];
+  followUpRequirements: FollowUpRequirement[];
+}
+
+interface PendingAction {
+  description: string;
+  urgency: UrgencyLevel;
+  timeframe: string;
+  assignedTo?: string;
+}
+
+interface FollowUpRequirement {
+  type: FollowUpType;
+  description: string;
+  dueDate?: Date;
+  priority: PriorityLevel;
 }
 ```
 
@@ -157,7 +218,8 @@ enum RedFlagType {
   SEVERE_ALLERGY = "severe_allergy",
   DRUG_INTERACTION = "drug_interaction",
   URGENT_LANGUAGE = "urgent_language",
-  CRITICAL_LAB = "critical_lab"
+  CRITICAL_LAB = "critical_lab",
+  PENDING_CRITICAL_TEST = "pending_critical_test"
 }
 ```
 
@@ -214,6 +276,27 @@ interface StructuredSummary {
   handoffSummary: HandoffSummary;
   completenessScore: number;
   safetyValidation: SafetyValidation;
+  sourceTraceability: SourceTrace[];
+  processingMetadata: ProcessingMetadata;
+}
+
+interface ProcessingMetadata {
+  processingTime: number;
+  componentsUsed: string[];
+  confidenceScores: ComponentConfidence[];
+  warningsGenerated: ProcessingWarning[];
+}
+
+interface ComponentConfidence {
+  component: string;
+  overallConfidence: number;
+  sectionConfidences: SectionConfidence[];
+}
+
+interface SectionConfidence {
+  sectionType: SectionType;
+  confidence: number;
+  factors: ConfidenceFactor[];
 }
 
 interface NoteMetadata {
@@ -264,6 +347,42 @@ enum AudienceType {
   HANDOFF = "handoff",
   ROUNDS = "rounds",
   EMERGENCY = "emergency"
+}
+
+enum TransformationType {
+  CLEANING = "cleaning",
+  NORMALIZATION = "normalization",
+  ABBREVIATION_EXPANSION = "abbreviation_expansion",
+  SECTION_EXTRACTION = "section_extraction"
+}
+
+enum RelationshipType {
+  TEMPORAL_SEQUENCE = "temporal_sequence",
+  CAUSAL_RELATIONSHIP = "causal_relationship",
+  CONCURRENT_EVENT = "concurrent_event",
+  CONTRADICTORY_INFO = "contradictory_info"
+}
+
+enum UrgencyLevel {
+  LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
+  CRITICAL = "critical"
+}
+
+enum FollowUpType {
+  LAB_RESULT = "lab_result",
+  IMAGING_RESULT = "imaging_result",
+  SPECIALIST_CONSULT = "specialist_consult",
+  MEDICATION_REVIEW = "medication_review",
+  SYMPTOM_MONITORING = "symptom_monitoring"
+}
+
+enum ConfidenceFactor {
+  ENTITY_RECOGNITION = "entity_recognition",
+  SECTION_CLASSIFICATION = "section_classification",
+  TEMPORAL_EXTRACTION = "temporal_extraction",
+  ABBREVIATION_RESOLUTION = "abbreviation_resolution"
 }
 ```
 
