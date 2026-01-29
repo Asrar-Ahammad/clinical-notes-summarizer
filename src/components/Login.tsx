@@ -38,37 +38,43 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[radial-gradient(circle_at_top_right,#1e1b4b,#0f172a)] p-6 overflow-hidden">
       <motion.div
-        className="login-card"
+        className="bg-slate-800/40 backdrop-blur-2xl border border-white/10 p-10 rounded-[2.5rem] w-full max-w-[480px] shadow-2xl relative"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="logo" style={{ justifyContent: 'center', marginBottom: '2rem' }}>
+        <div className="absolute -top-12 -left-12 w-32 h-32 bg-indigo-500/20 blur-[60px] rounded-full -z-10" />
+        <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-purple-500/20 blur-[60px] rounded-full -z-10" />
+
+        <div className="flex justify-center mb-8 gap-3">
           <ClipboardCheck className="w-12 h-12 text-indigo-400" />
-          <span style={{ fontSize: '2rem' }}>Kiro Clinical</span>
+          <span className="text-3xl font-black bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Kiro Clinical</span>
         </div>
 
-        <div className="login-header">
-          <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
-          <p>{isLogin ? 'Please enter your credentials to access the clinical suite' : 'Join the precision clinical summarization network'}</p>
+        <div className="text-center mb-10">
+          <h2 className="text-2xl font-bold text-white mb-2">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
+          <p className="text-slate-400 font-medium">{isLogin ? 'Please enter your credentials to access the clinical suite' : 'Join the precision clinical summarization network'}</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <AnimatePresence mode="wait">
             {!isLogin && (
               <motion.div
-                className="form-group"
+                className="space-y-2"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
               >
-                <label><UserIcon className="w-4 h-4" /> Full Name</label>
+                <label className="text-sm font-bold text-slate-400 flex items-center gap-2 uppercase tracking-widest pl-1">
+                  <UserIcon className="w-4 h-4" /> Full Name
+                </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  className="w-full bg-slate-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600 font-medium"
                   placeholder="Dr. John Doe"
                   required={!isLogin}
                 />
@@ -76,186 +82,79 @@ export const Login: React.FC = () => {
             )}
           </AnimatePresence>
 
-          <div className="form-group">
-            <label><Mail className="w-4 h-4" /> Email Address</label>
+          <div className="space-y-2">
+            <label className="text-sm font-bold text-slate-400 flex items-center gap-2 uppercase tracking-widest pl-1">
+              <Mail className="w-4 h-4" /> Email Address
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-slate-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600 font-medium"
               placeholder="clinician@hospital.com"
               required
             />
           </div>
 
-          <div className="form-group">
-            <label><Lock className="w-4 h-4" /> Password</label>
-            <div style={{ position: 'relative' }}>
+          <div className="space-y-2">
+            <label className="text-sm font-bold text-slate-400 flex items-center gap-2 uppercase tracking-widest pl-1">
+              <Lock className="w-4 h-4" /> Password
+            </label>
+            <div className="relative group">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="w-full bg-slate-900/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 pr-14 transition-all placeholder:text-slate-600 font-medium"
                 placeholder="••••••••"
                 required
-                style={{ width: '100%', paddingRight: '3rem' }}
               />
               <button
                 type="button"
-                className="password-toggle"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
                 onClick={() => setShowPassword(!showPassword)}
                 tabIndex={-1}
               >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
           </div>
 
           <button
             type="submit"
-            className="button-primary login-button"
+            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50 mt-4 group"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                {isLogin ? 'Authenticating...' : 'Creating Account...'}
+                <span>{isLogin ? 'Authenticating...' : 'Creating Account...'}</span>
               </>
             ) : (
               <>
-                {isLogin ? 'Sign In to Dashboard' : 'Complete Registration'}
-                <ArrowRight className="w-5 h-5" />
+                <span>{isLogin ? 'Sign In to Dashboard' : 'Complete Registration'}</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </>
             )}
           </button>
 
-          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+          <div className="text-center pt-2">
             <button
               type="button"
               onClick={toggleMode}
-              style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', fontSize: '0.9rem' }}
+              className="text-indigo-400 hover:text-indigo-300 font-bold text-sm transition-colors"
             >
               {isLogin ? "Don't have an account? Sign Up" : "Already have an account? Login"}
             </button>
           </div>
         </form>
 
-        <div className="login-footer">
-          <p>Secure clinical-grade authentication compliant with HIPAA/GDPR standards</p>
+        <div className="mt-12 pt-8 border-t border-white/5 text-center">
+          <p className="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest">
+            Secure clinical-grade authentication compliant with HIPAA/GDPR standards
+          </p>
         </div>
       </motion.div>
-
-      <style>{`
-                .login-container {
-                    height: 100vh;
-                    width: 100vw;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
-                    overflow: hidden;
-                }
-
-                .login-card {
-                    background: var(--bg-card);
-                    backdrop-filter: blur(20px);
-                    border: 1px solid var(--glass-border);
-                    padding: 3rem;
-                    border-radius: 2rem;
-                    width: 100%;
-                    max-width: 480px;
-                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-                }
-
-                .login-header {
-                    text-align: center;
-                    margin-bottom: 2rem;
-                }
-
-                .login-header h2 {
-                    font-size: 1.75rem;
-                    margin-bottom: 0.5rem;
-                    background: linear-gradient(to right, #fff, #94a3b8);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                }
-
-                .login-header p {
-                    color: var(--text-muted);
-                    font-size: 0.9375rem;
-                }
-
-                .login-form {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1.5rem;
-                }
-
-                .form-group {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.5rem;
-                }
-
-                .form-group label {
-                    font-size: 0.875rem;
-                    color: var(--text-muted);
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                }
-
-                .form-group input {
-                    background: rgba(0, 0, 0, 0.2);
-                    border: 1px solid var(--border);
-                    border-radius: 0.75rem;
-                    padding: 0.875rem 1rem;
-                    color: var(--text-main);
-                    outline: none;
-                    transition: border-color 0.2s;
-                }
-
-                .form-group input:focus {
-                    border-color: var(--primary);
-                }
-
-                .password-toggle {
-                    position: absolute;
-                    right: 1rem;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    background: none;
-                    border: none;
-                    color: var(--text-muted);
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 0;
-                }
-
-                .password-toggle:hover {
-                    color: var(--text-main);
-                }
-
-                .login-button {
-                    margin-top: 1rem;
-                    padding: 1rem;
-                    font-size: 1.05rem;
-                    justify-content: center;
-                }
-
-                .login-footer {
-                    margin-top: 2rem;
-                    text-align: center;
-                    padding-top: 1.5rem;
-                    border-top: 1px solid var(--border);
-                }
-
-                .login-footer p {
-                    font-size: 0.75rem;
-                    color: var(--text-muted);
-                    opacity: 0.6;
-                }
-            `}</style>
     </div>
   );
 };
