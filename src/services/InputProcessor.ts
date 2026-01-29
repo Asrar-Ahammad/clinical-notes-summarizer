@@ -3,7 +3,7 @@ import type {
     NoteMetadata
 } from '../types';
 
-import { SectionType, UrgencyLevel } from '../types';
+import { UrgencyLevel } from '../types';
 
 export interface ValidationSummary {
     isValid: boolean;

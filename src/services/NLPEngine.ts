@@ -1,7 +1,7 @@
 
 import type {
     MedicalEntity,
-    TextSpan
+
 } from '../types';
 
 import { EntityType } from '../types';
@@ -34,7 +34,7 @@ export class NLPEngine {
             { pattern: /weight:?\s*(\d{2,3}\s*(lbs|kg))/gi, type: EntityType.VITAL_SIGN, name: 'Weight' }
         ];
 
-        vitalPatterns.forEach(({ name }) => {
+        vitalPatterns.forEach(() => {
             // In a real NLP engine, patterns would be used here
             // This is a simplified version for mock extraction
         });

@@ -1,6 +1,6 @@
 
 import type {
-    MedicalEntity,
+
     TextSpan
 } from '../types';
 
@@ -14,7 +14,7 @@ export interface SectionMapping {
 }
 
 export class SectionClassifier {
-    private static sectionMarkers: Record<SectionType, string[]> = {
+    private static sectionMarkers: Partial<Record<SectionType, string[]>> = {
         [SectionType.CHIEF_COMPLAINT]: ['chief complaint', 'cc:', 'reason for visit', 'presenting problem'],
         [SectionType.HISTORY_PRESENT_ILLNESS]: ['history of present illness', 'hpi', 'history of current illness'],
         [SectionType.PAST_MEDICAL_HISTORY]: ['past medical history', 'pmh', 'medical history'],

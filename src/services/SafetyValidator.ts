@@ -3,7 +3,7 @@ import type {
     SafetyValidation,
     SafetyViolation,
     StructuredSummary,
-    TextSpan
+
 } from '../types';
 
 import { ViolationType, ViolationSeverity } from '../types';
