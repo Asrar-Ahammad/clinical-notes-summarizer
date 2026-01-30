@@ -32,7 +32,7 @@ export const SummaryResults = ({
         >
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 border-b border-white/5 pb-8">
                 <div>
-                    <h2 className="text-4xl font-black text-white tracking-tightest">Summary Results</h2>
+                    <h2 className="text-3xl lg:text-4xl font-black text-white tracking-tightest">Summary Results</h2>
                     <p className="text-slate-400 mt-2 font-medium">Verified clinical synthesis of patient data</p>
                 </div>
                 <ActionButtons

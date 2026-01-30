@@ -9,7 +9,7 @@ interface ActionButtonsProps {
 
 export const ActionButtons = ({ handleExportPDF, handleExportDocx, handleCopy, isCopied }: ActionButtonsProps) => {
     return (
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
             <button
                 className="flex items-center gap-2 bg-slate-800/60 border border-white/10 text-slate-100 py-2.5 px-5 rounded-xl font-semibold text-sm transition-all duration-300 hover:bg-slate-700 hover:border-indigo-500/50 active:scale-95 shadow-sm"
                 onClick={handleExportPDF}
@@ -26,8 +26,8 @@ export const ActionButtons = ({ handleExportPDF, handleExportDocx, handleCopy, i
             </button>
             <button
                 className={`flex items-center gap-2 py-2.5 px-5 rounded-xl font-bold text-sm transition-all duration-300 shadow-lg active:scale-95 ${isCopied
-                        ? 'bg-green-500/20 border border-green-500 text-green-400'
-                        : 'bg-indigo-500 border border-indigo-400/50 text-white hover:bg-indigo-600 shadow-indigo-500/20'
+                    ? 'bg-green-500/20 border border-green-500 text-green-400'
+                    : 'bg-indigo-500 border border-indigo-400/50 text-white hover:bg-indigo-600 shadow-indigo-500/20'
                     }`}
                 onClick={handleCopy}
             >

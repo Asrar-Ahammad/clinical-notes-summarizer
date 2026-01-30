@@ -40,7 +40,7 @@ export const Login: React.FC = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[radial-gradient(circle_at_top_right,#1e1b4b,#0f172a)] p-6 overflow-hidden">
       <motion.div
-        className="bg-slate-800/40 backdrop-blur-2xl border border-white/10 p-10 rounded-[2.5rem] w-full max-w-[480px] shadow-2xl relative"
+        className="bg-slate-800/40 backdrop-blur-2xl border border-white/10 p-6 md:p-10 rounded-[2.5rem] w-full max-w-[480px] shadow-2xl relative"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

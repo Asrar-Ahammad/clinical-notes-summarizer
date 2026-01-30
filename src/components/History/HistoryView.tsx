@@ -36,7 +36,7 @@ export const HistoryView = ({ history, setSummary, setActiveView }: HistoryViewP
                                     <h3 className="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors line-clamp-1">
                                         {h.handoffSummary.briefOverview}
                                     </h3>
-                                    <div className="flex items-center gap-4 mt-3">
+                                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-3">
                                         <span className="text-sm text-slate-400 bg-white/5 px-3 py-1 rounded-lg">
                                             {h.generatedAt.toLocaleString()}
                                         </span>

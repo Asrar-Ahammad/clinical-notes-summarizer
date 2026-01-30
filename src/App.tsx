@@ -26,6 +26,7 @@ export default function App() {
   const [history, setHistory] = useState<StructuredSummary[]>([]);
   const [activeView, setActiveView] = useState<'dashboard' | 'history'>('dashboard');
   const [isCopied, setIsCopied] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -127,7 +128,7 @@ ${summary.redFlags.map(rf => `[${rf.criticalityLevel.toUpperCase()}] ${rf.descri
   }
 
   return (
-    <div className="flex h-screen w-full bg-bg-main text-slate-50 overflow-hidden font-inter">
+    <div className="flex h-screen w-full bg-bg-main text-slate-50 overflow-hidden font-inter supports-[height:100dvh]:h-dvh">
       {/* Background radial gradient */}
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,#1e1b4b,#0f172a)] -z-10" />
 
@@ -137,10 +138,15 @@ ${summary.redFlags.map(rf => `[${rf.criticalityLevel.toUpperCase()}] ${rf.descri
         history={history}
         setSummary={setSummary}
         logout={logout}
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
       />
 
-      <main className="flex-1 overflow-y-auto p-8 lg:p-12 space-y-12 scroll-smooth">
-        <Header user={user} />
+      <main className="flex-1 overflow-y-auto w-full p-4 lg:p-12 space-y-6 lg:space-y-12 scroll-smooth">
+        <Header
+          user={user}
+          onMenuClick={() => setMobileMenuOpen(true)}
+        />
 
         {activeView === 'dashboard' ? (
           <div className="space-y-8 animate-in fade-in slide-in-from-top-4 duration-500">
