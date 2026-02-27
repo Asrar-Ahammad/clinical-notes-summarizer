@@ -1,0 +1,34 @@
+{
+  "version": "50.0.0",
+  "files": {
+    "1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0": {
+      "displayName": "InputProcessorFunction/Code",
+      "source": {
+        "path": "asset.1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region-d194c485": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "1ebc9d3ac2033816c4abb63e4afd69d350b4aba8704cc9236b82ea520b74f4b0.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "83192599e07a8787ad37e360b00546872747311c2ede52b504d0e85520a7720a": {
+      "displayName": "ClinicalSummaryStack Template",
+      "source": {
+        "path": "ClinicalSummaryStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region-e477f2fc": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "83192599e07a8787ad37e360b00546872747311c2ede52b504d0e85520a7720a.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

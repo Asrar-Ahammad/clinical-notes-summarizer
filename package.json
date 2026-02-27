@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "aws-amplify": "^6.16.2",
     "docx": "^8.5.0",
     "file-saver": "^2.0.5",
     "framer-motion": "^12.29.2",
@@ -18,10 +19,13 @@
     "jspdf-autotable": "^3.8.2",
     "lucide-react": "^0.563.0",
     "mammoth": "^1.11.0",
+    "oidc-client-ts": "^3.4.1",
     "openai": "^6.17.0",
+    "openid-client": "^6.8.2",
     "pdfjs-dist": "^5.4.530",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-oidc-context": "^3.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
