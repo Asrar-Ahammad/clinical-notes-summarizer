@@ -1,0 +1,24 @@
+{
+  "name": "aws-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.996.0",
+    "@aws-sdk/client-comprehendmedical": "^3.996.0",
+    "@types/aws-lambda": "^8.10.160",
+    "@types/node": "^25.3.0",
+    "aws-cdk-lib": "^2.240.0",
+    "aws-sdk": "^2.1693.0",
+    "constructs": "^10.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
